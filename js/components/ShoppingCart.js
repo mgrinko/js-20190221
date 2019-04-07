@@ -13,7 +13,10 @@ export default class ShoppingCart {
         <h4>Shopping Cart</h4>
         <ul>
           ${basketItems.map(item => `
-            <li>${item}</li>
+            <li>
+            ${item}
+            <span class="glyphicon glyphicon-remove"></span>
+            </li>
           `).join('')}      
         </ul>
       </div>

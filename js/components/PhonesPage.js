@@ -75,8 +75,9 @@ export default class PhonesPage {
       });
     },
     onPhoneAdded: (phoneId) => {
+      const newArray = this.state.basketItems.concat(phoneId);
       this.setState({
-        basketItems: this.state.basketItems.push(phoneId),
+        basketItems: newArray,
       })
     }
   });
