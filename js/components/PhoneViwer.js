@@ -19,11 +19,12 @@ export default class PhoneViwer{
   }
 
   buttonActions(buttons) {
-    console.log(buttons);
     buttons.forEach(button => {
       button.addEventListener('click', () => {
         if (button.dataset.action === "Back") {
           this.props.onBack();
+        } else if (button.dataset.action === "Add") {
+          this.props.onPhoneAdded(button.dataset.elementId);
         }
       })
     });
@@ -43,7 +44,7 @@ export default class PhoneViwer{
         <img class="phone" src="${ phone.images[0] }">
 
         <button data-element="Button" data-action="Back">Back</button>
-        <button data-element="Button" data-action="Add">Add to basket</button>
+        <button data-element="Button" data-action="Add" data-element-id="${phone.id}">Add to basket</button>
 
 
         <h1>${ phone.name }</h1>

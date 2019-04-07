@@ -30,7 +30,6 @@ export default class PhonesPage {
   }
 
   setState(newState) {
-    console.log(newState);
     this.state = {
       ...this.state,
       ...newState,
@@ -75,9 +74,9 @@ export default class PhonesPage {
       });
     },
     onPhoneAdded: (phoneId) => {
-      const newArray = this.state.basketItems.concat(phoneId);
+      this.state.basketItems.push(phoneId);
       this.setState({
-        basketItems: newArray,
+        basketItems: this.state.basketItems,
       })
     }
   });
@@ -88,7 +87,13 @@ export default class PhonesPage {
       this.setState({
         selectedPhone: null,
       });
-    }
+    },
+    onPhoneAdded: (phoneId) => {
+      this.state.basketItems.push(phoneId);
+      this.setState({
+        basketItems: this.state.basketItems,
+      })
+    },
   });
 
   this.initComponent(ShoppingCart, {
