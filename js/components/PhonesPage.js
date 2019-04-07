@@ -15,15 +15,6 @@ export default class PhonesPage {
     };
 
     this.render();
-
-    this.initComponent(PhonesCatalog, {
-      phones: this.state.phones,
-    });
-    this.initComponent(PhoneViwer, {
-      phone: this.state.selectedPhone,
-    });
-    this.initComponent(ShoppingCart);
-    this.initComponent(Filter);
   }
 
   initComponent(Constructor, props = {}) {
@@ -35,6 +26,15 @@ export default class PhonesPage {
     }
 
     
+  }
+
+  setState(newState) {
+    this.state = {
+      ...this.state,
+      ...newState,
+    };
+
+    this.render();
   }
 
   render() {
@@ -64,5 +64,21 @@ export default class PhonesPage {
     </div>
   </div>
    `;
+
+  this.initComponent(PhonesCatalog, {
+    phones: this.state.phones,
+    onPhoneSelected: (phoneID) => {
+      this.setState({
+        selectedPhone: getById(phoneID),
+      });
+    }
+  });
+
+  this.initComponent(PhoneViwer, {
+    phone: this.state.selectedPhone,
+  });
+
+  this.initComponent(ShoppingCart);
+  this.initComponent(Filter);
   }
 }
