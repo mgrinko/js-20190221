@@ -30,6 +30,7 @@ export default class PhonesPage {
   }
 
   setState(newState) {
+    console.log(newState);
     this.state = {
       ...this.state,
       ...newState,
@@ -72,6 +73,11 @@ export default class PhonesPage {
       this.setState({
         selectedPhone: getById(phoneID),
       });
+    },
+    onPhoneAdded: (phoneId) => {
+      this.setState({
+        basketItems: this.state.basketItems.push(phoneId),
+      })
     }
   });
 
@@ -84,7 +90,9 @@ export default class PhonesPage {
     }
   });
 
-  this.initComponent(ShoppingCart);
+  this.initComponent(ShoppingCart, {
+    basketItems: this.state.basketItems,
+  });
   this.initComponent(Filter);
   }
 }

@@ -14,7 +14,19 @@ export default class PhonesCatalog {
 
       const phoneId = link.dataset.phoneId;
       this.props.onPhoneSelected(phoneId);
-    })
+    });
+
+    const Buttons = this.element.querySelectorAll('[data-action="Add"]');
+    this.buttonActions(Buttons);
+  }
+
+  buttonActions(Buttons) {
+    Buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const phoneId = button.dataset.phoneId;
+        this.props.onPhoneAdded(phoneId);
+      });
+    });
   }
 
   render() {
@@ -34,10 +46,13 @@ export default class PhonesCatalog {
               data-element="PhoneLink" 
               data-phone-id="${ phone.id }"
               href="#!/phones/${ phone.id }">${ phone.name }</a>
+              <button class="btn btn-primary" data-action="Add" data-phone-id="${ phone.id }">Add</button>
               <p>${ phone.snippet }</p>
+              
             </li>
           `).join('')}
         </ul>
+
       </div>
     `
   }
