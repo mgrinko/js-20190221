@@ -12,6 +12,7 @@ export default class PhonesPage {
     this.state = {
       phones: getAll(),
       selectedPhone: null,
+      basketItems: [],
     };
 
     this.render();
@@ -76,6 +77,11 @@ export default class PhonesPage {
 
   this.initComponent(PhoneViwer, {
     phone: this.state.selectedPhone,
+    onBack: () => {
+      this.setState({
+        selectedPhone: null,
+      });
+    }
   });
 
   this.initComponent(ShoppingCart);

@@ -4,6 +4,13 @@ export default class PhoneViwer{
   this.props = props;
 
   this.render();
+
+  this.element.addEventListener('click', (event) => {
+    const button = this.element.querySelector('[data-element="BackButton"]');
+    
+    this.props.onBack();
+  })
+
  }
 
  render() {
@@ -13,7 +20,7 @@ export default class PhoneViwer{
     <div>
       <img class="phone" src="${ phone.images[0] }">
 
-      <button>Back</button>
+      <button data-element="BackButton">Back</button>
       <button>Add to basket</button>
 
 
