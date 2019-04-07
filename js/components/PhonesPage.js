@@ -93,6 +93,12 @@ export default class PhonesPage {
 
   this.initComponent(ShoppingCart, {
     basketItems: this.state.basketItems,
+    onDelete: (index) => {
+      this.state.basketItems.splice(index,1);
+      this.setState({
+        basketItems: this.state.basketItems,
+      })
+    }
   });
   this.initComponent(Filter);
   }
