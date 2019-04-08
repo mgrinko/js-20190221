@@ -1,26 +1,26 @@
 export default class Filter {
-  constructor(element) {
-    this.element = element;
+    constructor(element) {
+        this.element = element;
 
-    this.render();
-  }
+        this.render();
+    }
 
-  render() {
-    this.element.innerHTML = `
-      <div class="Filter">
-        <p>
-          Search:
-          <input>
-        </p>
-  
-        <p>
-          Sort by:
+    render() {
+        this.element.innerHTML = `
+     <div class="Filter">
+     <p>
+       Search:
+         <input>
+     </p>
+
+     <p>
+        Sort by:
           <select>
-            <option value="name">Alphabetical</option>
-            <option value="age">Newest</option>
+             <option value="name">Alphabetical</option>
+             <option value="age">Newest</option>
           </select>
-        </p>
-      </div>
+     </p>
+     </div>
     `;
-  }
+    }
 }
