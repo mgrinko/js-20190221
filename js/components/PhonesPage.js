@@ -1,4 +1,5 @@
 import Filter from './Filter.js';
+import PhoneViewer from './PhoneViewer.js';
 import ShoppingCart from './ShoppingCart.js';
 import PhonesCatalog from './PhonesCatalog.js';
 import {getAll, getById} from '../api/phones.js';
@@ -14,6 +15,7 @@ export default class PhonesPage {
             phones: getAll(),
         });
 
+        this.initComponent(PhoneViewer);
         this.initComponent(Filter);
         this.initComponent(ShoppingCart);
     }
@@ -41,6 +43,7 @@ export default class PhonesPage {
 
       <!--Main content-->
       <div class="col-md-10">
+        <div data-component="PhonesViewer"></div>
         <div data-component="PhonesCatalog"></div>
       </div>
     </div>

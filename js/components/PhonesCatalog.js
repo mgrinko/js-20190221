@@ -23,7 +23,7 @@ export default class PhonesCatalog {
                   </a>
                 </div>
     
-                <a href="#!/phones/motorola-xoom-with-wi-fi">${ phone.name }</a>
+                <a href="#!/phones/${ phone.id }">${ phone.name }</a>
                 <p>${ phone.snippet }</p>
               </li>
             `).join('') }
