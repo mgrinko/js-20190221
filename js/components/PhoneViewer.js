@@ -12,7 +12,7 @@ export default class PhoneViewer {
         this.element.innerHTML = `
        <div>
 
-            <img class="phone" src="img/phones/${ phone.images[0] }">
+            <img class="phone" src="${ phone.images[0] }">
         
             <button>Back</button>
             <button>Add to basket</button>
