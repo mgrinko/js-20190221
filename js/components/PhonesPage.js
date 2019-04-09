@@ -6,21 +6,38 @@ import {getAll, getById} from '../api/phones.js';
 
 
 export default class PhonesPage {
+
+
     constructor(element) {
         this.element = element;
+
+        this.state = {
+          phones: getAll(),
+          selectedPhone: null
+        };
 
         this.render();
 
         this.initComponent(PhonesCatalog, {
-            phones: getAll(),
+            phones: this.state.phones,
         });
 
-        this.initComponent(PhoneViewer);
+        this.initComponent(PhoneViewer, {
+            phone: this.state.selectedPhone
+        });
         this.initComponent(Filter);
         this.initComponent(ShoppingCart);
     }
 
     initComponent(Constructor, props = {}) {
+        const componentName = Constructor.name;
+        const element = this.element.querySelector(`[data-component="${componentName}"]`);
+
+        if (element) {
+            new Constructor(element, props);
+        }
+
+
         new Constructor(this.element.querySelector(`[data-component="${Constructor.name}"]`),
         props
         );
@@ -43,8 +60,11 @@ export default class PhonesPage {
 
       <!--Main content-->
       <div class="col-md-10">
-        <div data-component="PhonesViewer"></div>
-        <div data-component="PhonesCatalog"></div>
+        ${this.state.selectedPhone ? ` 
+        <div data-component="PhoneViewer"></div>
+         ` : `
+        <div data-component="PhonesCatalog"></div> `
+            }
       </div>
     </div>
     `;
