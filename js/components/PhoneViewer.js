@@ -4,6 +4,16 @@ export default class PhoneViewer {
         this.props = props;
 
         this.render();
+
+        this.element.addEventListener('click', (event) => {
+            const button = event.target.closest('[data-element="BackButton"]');
+
+            if(!button) {
+                return;
+            }
+
+            this.props.onBack();
+        });
     }
 
     render() {
@@ -14,7 +24,7 @@ export default class PhoneViewer {
 
             <img class="phone" src="${ phone.images[0] }">
         
-            <button>Back</button>
+            <button data-element="BackButton">Back</button>
             <button>Add to basket</button>
         
         
