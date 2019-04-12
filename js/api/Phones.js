@@ -1,4 +1,4 @@
-const phonesFromServer = [
+const phonesFromSerever = [
   {
       "age": 0, 
       "id": "motorola-xoom-with-wi-fi", 
@@ -154,73 +154,78 @@ const phonesFromServer = [
   }
 ]
 
-const phonesDetails = {
-  "additionalFeatures": "Accessibility features: Tactile QWERTY keyboard, four-direction keypad, start and end call buttons, dedicated number keys, camera button, TalkBack screen reader", 
+const phoneDetails = {
+  "additionalFeatures": "Sensors: proximity, ambient light, barometer, gyroscope", 
   "android": {
-      "os": "Android 2.1", 
-      "ui": "LG Home"
+      "os": "Android 3.0", 
+      "ui": "Honeycomb"
   }, 
   "availability": [
-      "Cellular South"
+      ""
   ], 
   "battery": {
-      "standbyTime": "500 hours", 
-      "talkTime": "8 hours", 
-      "type": "Lithium Ion (Li-Ion) (1500 mAH)"
+      "standbyTime": "336 hours", 
+      "talkTime": "24 hours", 
+      "type": "Other ( mAH)"
   }, 
   "camera": {
       "features": [
           "Flash", 
           "Video"
       ], 
-      "primary": "3.0 megapixels"
+      "primary": "5.0 megapixels"
   }, 
   "connectivity": {
       "bluetooth": "Bluetooth 2.1", 
-      "cell": "1.9 GHz CDMA PCS, 800 MHz CDMA, EVDO Rev. A, 1xRTT", 
+      "cell": "", 
       "gps": true, 
       "infrared": false, 
-      "wifi": "802.11 b/g"
+      "wifi": "802.11 b/g/n"
   }, 
-  "description": "Android plus QWERTY is a powerful duo. LG Axis melds a speedy UI with the limitless micro-entertainment of 80,000+ apps including voice-activated Google. Feel the tactile vibration on its tempered glass touchscreen. Take the fuzziness out of your fun with a 3.2MP camera that does 360\u00b0 panoramics. And customize your home screens with shortcuts to your apps, favorites, and widgets. It's the centerpiece of your life.", 
+  "description": "Motorola XOOM with Wi-Fi has a super-powerful dual-core processor and Android\u2122 3.0 (Honeycomb) \u2014 the Android platform designed specifically for tablets. With its 10.1-inch HD widescreen display, you\u2019ll enjoy HD video in a thin, light, powerful and upgradeable tablet.", 
   "display": {
-      "screenResolution": "WVGA (800 x 480)", 
-      "screenSize": "3.2 inches", 
+      "screenResolution": "WXGA (1200 x 800)", 
+      "screenSize": "10.1 inches", 
       "touchScreen": true
   }, 
   "hardware": {
       "accelerometer": true, 
-      "audioJack": "", 
-      "cpu": "600 MHz Qualcomm MSM7627", 
+      "audioJack": "3.5mm", 
+      "cpu": "1 GHz Dual Core Tegra 2", 
       "fmRadio": false, 
-      "physicalKeyboard": true, 
+      "physicalKeyboard": false, 
       "usb": "USB 2.0"
   }, 
-  "id": "lg-axis", 
+  "id": "motorola-xoom-with-wi-fi", 
   "images": [
-      "img/phones/lg-axis.0.jpg", 
-      "img/phones/lg-axis.1.jpg", 
-      "img/phones/lg-axis.2.jpg"
+      "img/phones/motorola-xoom-with-wi-fi.0.jpg", 
+      "img/phones/motorola-xoom-with-wi-fi.1.jpg", 
+      "img/phones/motorola-xoom-with-wi-fi.2.jpg", 
+      "img/phones/motorola-xoom-with-wi-fi.3.jpg", 
+      "img/phones/motorola-xoom-with-wi-fi.4.jpg", 
+      "img/phones/motorola-xoom-with-wi-fi.5.jpg"
   ], 
-  "name": "LG Axis", 
+  "name": "Motorola XOOM\u2122 with Wi-Fi", 
   "sizeAndWeight": {
       "dimensions": [
-          "56.0 mm (w)", 
-          "116.0 mm (h)", 
-          "16.0 mm (d)"
+          "249.1 mm (w)", 
+          "167.8 mm (h)", 
+          "12.9 mm (d)"
       ], 
-      "weight": "158.0 grams"
+      "weight": "708.0 grams"
   }, 
   "storage": {
-      "flash": "126MB", 
-      "ram": "256MB"
+      "flash": "32000MB", 
+      "ram": "1000MB"
   }
 }
 
+
 export const getAllPhones = () => {
-  return phonesFromServer;
+  return phonesFromSerever;
 }
 
-export const getById = (phoneId) => {
-  return  phonesDetails;
+export const getPhoneById = (phoneId) => {
+  return phoneDetails;
 }
+

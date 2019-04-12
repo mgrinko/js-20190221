@@ -7,7 +7,7 @@ export default class ShoppingCart {
 
   render() {
     this.element.innerHTML = `
-      <h4>Shopping Cart</h4>
+      <p>Shopping Cart</p>
       <ul>
         <li>Phone 1</li>
         <li>Phone 2</li>

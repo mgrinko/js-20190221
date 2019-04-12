@@ -4,28 +4,38 @@ export default class PhoneViewer {
     this.props = props;
 
     this.render();
+
+    this.element.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-element="Button"]');
+      
+      if (!button) {
+        return;
+      }
+      
+      this.props.onBack();
+    });
   }
 
   render() {
-    const { phone } = this.props; 
+    const {phone} = this.props;
     this.element.innerHTML = `
       <div>
 
         <img class="phone" src="${phone.images[0]}">
 
-        <button>Back</button>
+        <button data-element="Button">Back</button>
         <button>Add to basket</button>
-       
+
 
         <h1>${phone.name}</h1>
 
         <p>${phone.description}</p>
 
         <ul class="phone-thumbs">
-          ${phone.images.map(image => `
-            <li>
-              <img src="${image}.jpg">
-            </li>
+          ${phone.images.map(phone => `
+          <li>
+            <img src="${phone}">
+          </li>
           `).join('')}
         </ul>
 
@@ -41,20 +51,20 @@ export default class PhoneViewer {
             <span>Battery</span>
             <dl>
               <dt>Type</dt>
-              <dd>Other ( mAH)</dd>
+              <dd>${phone.battery.type}</dd>
               <dt>Talk Time</dt>
-              <dd>24 hours</dd>
+              <dd>${phone.battery.talkTime}</dd>
               <dt>Standby time (max)</dt>
-              <dd>336 hours</dd>
+              <dd>${phone.battery.standbyTime}</dd>
             </dl>
           </li>
           <li>
             <span>Storage and Memory</span>
             <dl>
               <dt>RAM</dt>
-              <dd>1000MB</dd>
+              <dd>${phone.storage.ram}</dd>
               <dt>Internal Storage</dt>
-              <dd>32000MB</dd>
+              <dd>${phone.storage.flash}</dd>
             </dl>
           </li>
           <li>
@@ -63,73 +73,73 @@ export default class PhoneViewer {
               <dt>Network Support</dt>
               <dd></dd>
               <dt>WiFi</dt>
-              <dd>802.11 b/g/n</dd>
+              <dd>${phone.connectivity.wifi}</dd>
               <dt>Bluetooth</dt>
-              <dd>Bluetooth 2.1</dd>
+              <dd>${phone.connectivity.bluetooth}</dd>
               <dt>Infrared</dt>
-              <dd>✘</dd>
+              <dd>${phone.connectivity.infrared ? `✓` : `✘`}</dd>
               <dt>GPS</dt>
-              <dd>✓</dd>
+              <dd>${phone.connectivity.gps ? `✓` : `✘`}</dd>
             </dl>
           </li>
           <li>
             <span>Android</span>
             <dl>
               <dt>OS Version</dt>
-              <dd>Android 3.0</dd>
+              <dd>${phone.android.os}</dd>
               <dt>UI</dt>
-              <dd>Honeycomb</dd>
+              <dd>${phone.android.ui}</dd>
             </dl>
           </li>
           <li>
             <span>Size and Weight</span>
             <dl>
               <dt>Dimensions</dt>
-              <dd>249.1 mm (w)</dd>
-              <dd>167.8 mm (h)</dd>
-              <dd>12.9 mm (d)</dd>
+              <dd>${phone.sizeAndWeight.dimensions[0]}</dd>
+              <dd>${phone.sizeAndWeight.dimensions[1]}</dd>
+              <dd>${phone.sizeAndWeight.dimensions[2]}</dd>
               <dt>Weight</dt>
-              <dd>708.0 grams</dd>
+              <dd>${phone.sizeAndWeight.weight}</dd>
             </dl>
           </li>
           <li>
             <span>Display</span>
             <dl>
               <dt>Screen size</dt>
-              <dd>10.1 inches</dd>
+              <dd>${phone.display.screenSize}</dd>
               <dt>Screen resolution</dt>
-              <dd>WXGA (1200 x 800)</dd>
+              <dd>${phone.display.screenResolution}</dd>
               <dt>Touch screen</dt>
-              <dd>✓</dd>
+              <dd>${phone.display.touchScreen ? `✓` : `✘`}</dd>
             </dl>
           </li>
           <li>
             <span>Hardware</span>
             <dl>
               <dt>CPU</dt>
-              <dd>1 GHz Dual Core Tegra 2</dd>
+              <dd>${phone.hardware.cpu}</dd>
               <dt>USB</dt>
-              <dd>USB 2.0</dd>
+              <dd>${phone.hardware.usb}</dd>
               <dt>Audio / headphone jack</dt>
-              <dd>3.5mm</dd>
+              <dd>${phone.hardware.audioJack}</dd>
               <dt>FM Radio</dt>
-              <dd>✘</dd>
+              <dd>${phone.hardware.fmRadio ? `✓` : `✘`}</dd>
               <dt>Accelerometer</dt>
-              <dd>✓</dd>
+              <dd>${phone.hardware.accelerometer ? `✓` : `✘`}</dd>
             </dl>
           </li>
           <li>
             <span>Camera</span>
             <dl>
               <dt>Primary</dt>
-              <dd>5.0 megapixels</dd>
+              <dd>${phone.camera.primary}</dd>
               <dt>Features</dt>
-              <dd>Flash, Video</dd>
+              <dd>${phone.camera.features[0]}, ${phone.camera.features[1]}</dd>
             </dl>
           </li>
           <li>
             <span>Additional Features</span>
-            <dd>Sensors: proximity, ambient light, barometer, gyroscope</dd>
+            <dd>${phone.additionalFeatures}</dd>
           </li>
         </ul>
       </div>

@@ -1,4 +1,3 @@
-import PhonePage from './components/PhonePage.js'
+import PhonesPage from './components/PhonesPage.js';
 
-new PhonePage(document.querySelector('[data-component="PhonePage"]'))
-
+new PhonesPage(document.querySelector('[data-component="PhonesPage"]'));
