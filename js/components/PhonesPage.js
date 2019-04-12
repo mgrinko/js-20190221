@@ -12,6 +12,7 @@ export default class PhonesPage extends Component {
     this.state = {
       phones: getAllPhones(),
       selectedPhone: null,
+      items: [],
     }
 
     this.render();
@@ -26,7 +27,13 @@ export default class PhonesPage extends Component {
         this.setState({
           selectedPhone: getPhoneById(phoneId)
         });
-      }
+      },
+      
+      onAdd: (phoneId) => {
+        this.setState({
+          items: [...this.state.items, phoneId],
+        });
+      },
     });
     this.initializeComponent(PhoneViewer, {
       phone: this.state.selectedPhone,
@@ -35,10 +42,16 @@ export default class PhonesPage extends Component {
         this.setState({
           selectedPhone: null,
         });
-      }
+      },
+
+      onAdd: (phoneId) => {
+        this.setState({
+          items: [...this.state.items, phoneId],
+        });
+      },
     });
     this.initializeComponent(Filter);
-    this.initializeComponent(ShoppingCart);
+    this.initializeComponent(ShoppingCart, {items: this.state.items});
   }
 
   render() {
