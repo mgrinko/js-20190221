@@ -3,6 +3,10 @@ import Component from '../Component.js';
 export default class PhoneViewer extends Component {
   constructor(element, props) {
     super(element, props);
+    
+    this.state = {
+      selectedImage: this.props.phone.images[0],
+    }
 
     this.render();
 
@@ -13,6 +17,14 @@ export default class PhoneViewer extends Component {
     this.on('click', 'AddItem', () => {
       this.props.onAdd(this.props.phone.id);
     })
+
+    this.on('click', 'SmallImage', (event) => {
+      const imageUrl = event.delegateTarget.dataset.imageUrl;
+
+      this.setState({
+        selectedImage: imageUrl,
+      })
+    });
   }
 
   render() {
@@ -20,7 +32,7 @@ export default class PhoneViewer extends Component {
     this.element.innerHTML = `
       <div>
 
-        <img class="phone" src="${phone.images[0]}">
+        <img class="phone" src="${this.state.selectedImage}">
 
         <button data-element="Button">Back</button>
         <button data-element="AddItem">Add to basket</button>
@@ -31,9 +43,9 @@ export default class PhoneViewer extends Component {
         <p>${phone.description}</p>
 
         <ul class="phone-thumbs">
-          ${phone.images.map(phone => `
-          <li>
-            <img src="${phone}">
+          ${phone.images.map(imageUrl => `
+          <li data-element="SmallImage" data-image-url="${imageUrl}">
+            <img src="${imageUrl}">
           </li>
           `).join('')}
         </ul>
