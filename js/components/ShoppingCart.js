@@ -5,16 +5,22 @@ export default class ShoppingCart extends Component {
     super(element, props);
 
     this.render();
+
+    this.on('click', 'RemoveButton', (event) => {
+      const item = event.delegateTarget.dataset.item;
+      this.props.onRemove(item);
+    })
   }
 
-  render() {
+  render() { 
+
     this.element.innerHTML = `
       <p>Shopping Cart</p>
       <ul>
-        ${this.props.items.map(item => `
+        ${Object.keys(this.props.items).map(item => `
         <li>
-          ${item}
-          <button>X</button>
+          ${item} - ${this.props.items[item]}
+          <button data-element="RemoveButton" data-item="${item}">X</button>
         </li>
         `).join('')}
       </ul>
