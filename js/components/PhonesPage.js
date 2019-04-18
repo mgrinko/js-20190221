@@ -25,10 +25,13 @@ export default class PhonesPage extends Component {
 
     this.render();
 
-    getAll()
-      .then(phones => {
-        this.setState({ phones: phones })
-      });
+    this.loadPhones();
+  }
+
+  async loadPhones() {
+    const phones = await getAll();
+
+    this.setState({ phones: phones })
   }
 
   addItem(item) {
