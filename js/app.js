@@ -6,6 +6,41 @@ new PhonesPage(
 
 
 
+if (false) {
+  const scenario = (ok, fail) => {
+
+    const clickPromise = new Promise((resolve) => {
+      document.addEventListener('click', resolve)
+    });
+
+    const contextmenuPromise = new Promise(resolve => {
+      document.addEventListener('contextmenu', resolve)
+    });
+
+    clickPromise
+      .then(() => console.log('clicked'));
+
+    contextmenuPromise
+      .then(() => console.log('contextmenu'));
+
+    Promise.all([clickPromise, contextmenuPromise])
+      .then(ok);
+
+    setTimeout(fail, 4000);
+  };
+
+
+
+  const myPromise = new Promise(scenario);
+
+
+  myPromise
+    .then(
+      () => console.log('OK'),
+      () => console.log('ERROR')
+    )
+  ;
+}
 
 
 
