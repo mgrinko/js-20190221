@@ -29,7 +29,9 @@ export default class PhonesPage extends Component {
   }
 
   async loadPhones() {
-    const phones = await getAll();
+    const phones = await getAll()
+
+    console.log(phones);
 
     this.setState({ phones: phones })
   }
@@ -56,6 +58,7 @@ export default class PhonesPage extends Component {
   selectedPhone(phoneId) {
     getById(phoneId)
       .then(phone => {
+        console.log(phone);
         this.setState({ selectedPhone: phone });
       });
   }
