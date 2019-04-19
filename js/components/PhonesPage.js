@@ -1,8 +1,8 @@
 import Component from '../Component.js';
 import PhonesCatalog from './PhonesCatalog.js';
 import PhoneViewer from './PhoneViewer.js';
-import Filter from './Filter.js';
 import ShoppingCart from './ShoppingCart.js';
+import Filter from './Filter.js';
 import {getAllPhones, getPhoneById} from '../api/Phones.js';
 
 export default class PhonesPage extends Component {
@@ -10,15 +10,22 @@ export default class PhonesPage extends Component {
     super(element);
 
     this.state = {
-      phones: getAllPhones(),
+      phones: [],
       selectedPhone: null,
-      items: {
-        'sadf': 1,
-        'sdasd': 2,
-      }
+      items: {},
     }
 
+    this.onPhoneSelected = (phoneId) => this.selectedPhone(phoneId);
+    this.onAdd = (phoneId) => this.addItem(phoneId);
+    this.onBack =  () => this.unselectedPhone();
+    this.onRemove = (itemToRemove) => this.removeItem(itemToRemove);
+    
     this.render();
+
+    getAllPhones()
+      .then(phones => {
+        this.setState({phones: phones})
+      })
   }
 
   addItem(phoneId) {
@@ -32,28 +39,45 @@ export default class PhonesPage extends Component {
 
   removeItem(itemToRemove) {
     const newItems = this.state.items;
-    delete newItems[itemToRemove]
+    delete newItems[itemToRemove];
+
     this.setState({
       items: newItems,
     });
   }
 
+  selectedPhone(phoneId) {
+    getPhoneById(phoneId)
+      .then(phone => {
+        this.setState({
+          selectedPhone: phone,
+        })
+      })
+    
+  }
+
+  unselectedPhone() {
+    this.setState({
+      selectedPhone: null,
+    })
+  }
+
   init() {
     this.initializeComponent(PhonesCatalog, {
       phones: this.state.phones,
-      onPhoneSelected: (phoneId) => this.setState({selectedPhone: getPhoneById()}),
-      onAdd: (phoneId) => this.addItem(phoneId),
+      onPhoneSelected: this.onPhoneSelected,
+      onAdd: this.onAdd,
     });
     this.initializeComponent(PhoneViewer, {
       phone: this.state.selectedPhone,
-      onBack: () => this.setState({selectedPhone: null}),
-      onAdd: (phoneId) => this.addItem(phoneId),
+      onBack:this.onBack,
+      onAdd: this.onAdd,
     });
-    this.initializeComponent(Filter);
     this.initializeComponent(ShoppingCart, {
       items: this.state.items,
-       onRemove: (itemToRemove) => this.removeItem(itemToRemove),
+       onRemove: this.onRemove,
     });
+    this.initializeComponent(Filter);
   }
 
   render() {

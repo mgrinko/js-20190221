@@ -3,7 +3,7 @@ import Component from '../Component.js';
 export default class PhonesCatalog extends Component {
   constructor(element, props) {
     super(element, props);
-
+   
     this.render();
 
     this.on('click', 'PhoneLink', (event) => {

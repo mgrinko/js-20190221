@@ -105,3 +105,9 @@ ul.specs dt {
 h1 {
   border-bottom: 1px solid gray;
 }
+
+.items-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
