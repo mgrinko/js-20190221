@@ -15,11 +15,11 @@ export default class ShoppingCart extends Component {
   render() { 
 
     this.element.innerHTML = `
-      <p>Shopping Cart</p>
-      <ul>
+      <h3>Shopping Cart</h3>
+      <ul class="items-list">
         ${Object.keys(this.props.items).map(item => `
-        <li>
-          ${item} - ${this.props.items[item]}
+        <li class="item">
+          ${item.toLocaleUpperCase().slice(0, 20)} - ${this.props.items[item]}
           <button data-element="RemoveButton" data-item="${item}">X</button>
         </li>
         `).join('')}

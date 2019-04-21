@@ -18,14 +18,17 @@ export default class PhonesPage extends Component {
     this.onPhoneSelected = (phoneId) => this.selectedPhone(phoneId);
     this.onAdd = (phoneId) => this.addItem(phoneId);
     this.onBack =  () => this.unselectedPhone();
-    this.onRemove = (itemToRemove) => this.removeItem(itemToRemove);
+    // this.onRemove = (itemToRemove) => this.removeItem(itemToRemove);
     
     this.render();
 
-    getAllPhones()
-      .then(phones => {
-        this.setState({phones: phones})
-      })
+    this.loadPhones();
+  }
+
+  async loadPhones() {
+    const phones = await getAllPhones();
+
+    this.setState({phones: phones})
   }
 
   addItem(phoneId) {
@@ -46,14 +49,10 @@ export default class PhonesPage extends Component {
     });
   }
 
-  selectedPhone(phoneId) {
-    getPhoneById(phoneId)
-      .then(phone => {
-        this.setState({
-          selectedPhone: phone,
-        })
-      })
-    
+  async selectedPhone(phoneId) {
+    const phone = await getPhoneById(phoneId)
+      
+    this.setState({selectedPhone: phone,})
   }
 
   unselectedPhone() {
@@ -75,7 +74,7 @@ export default class PhonesPage extends Component {
     });
     this.initializeComponent(ShoppingCart, {
       items: this.state.items,
-       onRemove: this.onRemove,
+       onRemove: (itemToRemove) => this.removeItem(itemToRemove),
     });
     this.initializeComponent(Filter);
   }
