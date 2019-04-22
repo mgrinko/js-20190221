@@ -4,8 +4,6 @@ export default class PhonesCatalog extends Component {
   constructor(element, props) {
     super(element, props);
 
-    console.log('Catalog init');
-
     this.render();
 
     this.on('click', 'PhoneLink', (event) => {

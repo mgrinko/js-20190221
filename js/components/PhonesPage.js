@@ -31,8 +31,6 @@ export default class PhonesPage extends Component {
   async loadPhones() {
     const phones = await getAll()
 
-    console.log(phones);
-
     this.setState({ phones: phones })
   }
 
@@ -47,7 +45,7 @@ export default class PhonesPage extends Component {
   }
 
   removeItem(itemToRemove) {
-    const newItems = this.state.items;
+    const newItems = { ...this.state.items };
     delete newItems[itemToRemove];
 
     this.setState({
@@ -80,6 +78,7 @@ export default class PhonesPage extends Component {
       onAdd: this.onAdd,
     });
 
+    debugger;
     this.initComponent(ShoppingCart, {
       items: this.state.items,
       onRemove: this.onRemove,
