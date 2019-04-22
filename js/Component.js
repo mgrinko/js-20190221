@@ -1,3 +1,5 @@
+/* global _ */
+
 export default class Component {
   constructor(element, props = {}) {
     this.element = element;
@@ -18,13 +20,14 @@ export default class Component {
   on(eventName, elementName, callback) {
     this.element.addEventListener(eventName, (event) => {
       const delegateTarget = event.target.closest(
-        `[data-element="${elementName}"]`
+        `[data-element="${elementName}"]`,
       );
 
       if (!delegateTarget) {
         return;
       }
 
+      // eslint-disable-next-line no-param-reassign
       event.delegateTarget = delegateTarget;
       callback(event);
     });
@@ -47,4 +50,3 @@ export default class Component {
     }
   }
 }
-

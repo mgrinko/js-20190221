@@ -7,7 +7,7 @@ export default class ShoppingCart extends Component {
     this.render();
 
     this.on('click', 'RemoveButton', (event) => {
-      const item = event.delegateTarget.dataset.item;
+      const { item } = event.delegateTarget.dataset;
       this.props.onRemove(item);
     });
   }
@@ -17,7 +17,7 @@ export default class ShoppingCart extends Component {
       <div>
         <h4>Shopping Cart</h4>
         <ul>
-          ${ Object.keys(this.props.items).map(item => `
+          ${Object.keys(this.props.items).map(item => `
           
             <li>
               ${item} - ${this.props.items[item]}
@@ -27,7 +27,7 @@ export default class ShoppingCart extends Component {
               >X</button>
             </li> 
           
-          `).join('') }
+          `).join('')}
         </ul>
       </div>
     `;

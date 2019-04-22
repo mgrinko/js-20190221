@@ -13,8 +13,8 @@ export default class PhonesPage extends Component {
       phones: [],
       selectedPhone: null,
       items: {
-        'qweqwe': 2,
-        'dfsdfgdfg': 1,
+        qweqwe: 2,
+        dfsdfgdfg: 1,
       },
     };
 
@@ -29,9 +29,9 @@ export default class PhonesPage extends Component {
   }
 
   async loadPhones() {
-    const phones = await getAll()
+    const phones = await getAll();
 
-    this.setState({ phones: phones })
+    this.setState({ phones });
   }
 
   addItem(item) {
@@ -41,7 +41,7 @@ export default class PhonesPage extends Component {
       [item]: oldItems[item] ? oldItems[item] + 1 : 1,
     };
 
-    this.setState({ items: items });
+    this.setState({ items });
   }
 
   removeItem(itemToRemove) {
@@ -49,14 +49,13 @@ export default class PhonesPage extends Component {
     delete newItems[itemToRemove];
 
     this.setState({
-      items: newItems
+      items: newItems,
     });
   }
 
   selectedPhone(phoneId) {
     getById(phoneId)
       .then(phone => {
-        console.log(phone);
         this.setState({ selectedPhone: phone });
       });
   }
@@ -78,7 +77,6 @@ export default class PhonesPage extends Component {
       onAdd: this.onAdd,
     });
 
-    debugger;
     this.initComponent(ShoppingCart, {
       items: this.state.items,
       onRemove: this.onRemove,
@@ -104,7 +102,7 @@ export default class PhonesPage extends Component {
   
         <!--Main content-->
         <div class="col-md-10">
-          ${ this.state.selectedPhone ? `
+          ${this.state.selectedPhone ? `
             <div data-component="PhoneViewer"></div>
           ` : `
             <div data-component="PhonesCatalog"></div>

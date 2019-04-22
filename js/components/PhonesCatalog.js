@@ -7,12 +7,12 @@ export default class PhonesCatalog extends Component {
     this.render();
 
     this.on('click', 'PhoneLink', (event) => {
-      const phoneId = event.delegateTarget.dataset.phoneId;
+      const { phoneId } = event.delegateTarget.dataset;
       this.props.onPhoneSelected(phoneId);
     });
 
     this.on('click', 'AddButton', (event) => {
-      const phoneId = event.delegateTarget.dataset.phoneId;
+      const { phoneId } = event.delegateTarget.dataset;
       this.props.onAdd(phoneId);
     });
   }
@@ -21,22 +21,22 @@ export default class PhonesCatalog extends Component {
     this.element.innerHTML = `
       <div>
         <ul class="phones">
-          ${ this.props.phones.map(phone => `
+          ${this.props.phones.map(phone => `
             
             <li class="thumbnail">
               <a
                 data-element="PhoneLink"
-                data-phone-id="${ phone.id }"
-                href="#!/phones/${ phone.id }"
+                data-phone-id="${phone.id}"
+                href="#!/phones/${phone.id}"
                 class="thumb"
               >
-                <img alt="${ phone.name }" src="${ phone.imageUrl }">
+                <img alt="${phone.name}" src="${phone.imageUrl}">
               </a>
   
               <div class="phones__btn-buy-wrapper">
                 <a
                   data-element="AddButton"
-                  data-phone-id="${ phone.id }"
+                  data-phone-id="${phone.id}"
                   class="btn btn-success"
                 >
                   Add
@@ -45,17 +45,17 @@ export default class PhonesCatalog extends Component {
   
               <a
                 data-element="PhoneLink"
-                data-phone-id="${ phone.id }"
-                href="#!/phones/${ phone.id }"
+                data-phone-id="${phone.id}"
+                href="#!/phones/${phone.id}"
               >
               
-                ${ phone.name }
+                ${phone.name}
               </a>
               
-              <p>${ phone.snippet }</p>
+              <p>${phone.snippet}</p>
             </li>
           
-          `).join('') }
+          `).join('')}
         </ul>
       </div>
     `;

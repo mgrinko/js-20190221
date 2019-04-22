@@ -13,5 +13,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'arrow-parens': 'off',
+    'import/extensions': 0,
   },
 };
