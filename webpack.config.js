@@ -7,6 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js',
   },
+  devtool: 'source-map',
 
   module: {
     rules: [
@@ -22,6 +23,12 @@ module.exports = {
         }
       }
     ]
+  },
+
+  devServer: {
+    contentBase: path.join(__dirname, 'public'),
+    host: '127.0.0.1',
+    port: 9000
   }
 };
 
