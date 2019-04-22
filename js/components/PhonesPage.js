@@ -11,6 +11,8 @@ export default class PhonesPage extends Component {
 
     this.state = {
       phones: [],
+      query: '',
+      order: 'name',
       selectedPhone: null,
       items: {
         qweqwe: 2,
@@ -25,7 +27,10 @@ export default class PhonesPage extends Component {
 
     this.render();
 
-    this.loadPhones();
+    this.loadPhones({
+      query: this.state.query,
+      order: this.state.order,
+    });
   }
 
   async loadPhones() {
