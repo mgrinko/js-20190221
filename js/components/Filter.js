@@ -5,6 +5,14 @@ export default class Filter extends Component {
     super(element, props);
 
     this.render();
+
+    this.on('input', 'Query', _.debounce((event) => {
+      props.onQueryChange(event.target.value)
+    }, 500));
+
+    this.on('change', 'Order', (event) => {
+      props.onOrderChange(event.target.value)
+    });
   }
 
   render() {
@@ -17,7 +25,7 @@ export default class Filter extends Component {
   
         <p>
           Sort by:
-          <select data-element="SortField">
+          <select data-element="Order">
             <option value="name">Alphabetical</option>
             <option value="age">Newest</option>
           </select>

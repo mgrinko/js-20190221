@@ -22,8 +22,18 @@ export default class PhonesPage extends Component {
 
     this.onPhoneSelected = (phoneId) => this.selectedPhone(phoneId);
     this.onAdd = (phoneId) => this.addItem(phoneId);
-    this.onBack = () => this.unselectedPhone();
+    this.onBack = () => this.setState({ selectedPhone: null });
     this.onRemove = (itemToRemove) => this.removeItem(itemToRemove);
+
+    this.onQueryChange = (query) => {
+      this.setState({ query });
+      this.loadPhones();
+    };
+
+    this.onOrderChange = (order) => {
+      this.setState({ order });
+      this.loadPhones();
+    };
 
     this.render();
 
@@ -65,10 +75,6 @@ export default class PhonesPage extends Component {
       });
   }
 
-  unselectedPhone() {
-    this.setState({ selectedPhone: null });
-  }
-
   init() {
     this.initComponent(PhonesCatalog, {
       phones: this.state.phones,
@@ -87,7 +93,10 @@ export default class PhonesPage extends Component {
       onRemove: this.onRemove,
     });
 
-    this.initComponent(Filter);
+    this.initComponent(Filter, {
+      onQueryChange: this.onQueryChange,
+      onOrderChange: this.onOrderChange,
+    });
   }
 
   render() {
