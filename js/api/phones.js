@@ -1,12 +1,16 @@
 const API_URL = 'https://mgrinko.github.io/js-20190221/api';
 
-export const getAll = async ({ query, order } = {}) => {
+export const getAll = async ({ query = '', order = '' } = {}) => {
   try {
-    const response = await fetch(`${API_URL}/phones.json`);
+    const response = await fetch(`${API_URL}/phones.json?query=${query}&order=${order}`);
     let phones = await response.json();
 
     if (query) {
-      phones = phones;
+      const lowerQuery = query.toLowerCase();
+
+      phones = phones.filter(
+        phone => phone.name.toLowerCase().includes(lowerQuery)
+      );
     }
 
     if (order) {

@@ -1,6 +1,8 @@
-export default class Filter {
-  constructor(element) {
-    this.element = element;
+import Component from '../Component.js';
+
+export default class Filter extends Component {
+  constructor(element, props) {
+    super(element, props);
 
     this.render();
   }
@@ -10,12 +12,12 @@ export default class Filter {
       <div class="Filter">
         <p>
           Search:
-          <input>
+          <input data-element="Query">
         </p>
   
         <p>
           Sort by:
-          <select>
+          <select data-element="SortField">
             <option value="name">Alphabetical</option>
             <option value="age">Newest</option>
           </select>
