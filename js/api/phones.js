@@ -13,8 +13,18 @@ export const getAll = async ({ query = '', order = '' } = {}) => {
       );
     }
 
-    if (order) {
-      phones = phones;
+    if (order && phones.length > 0) {
+      const defaultSortFn = (a, b) => a[order] > b[order] ? 1 : -1;
+
+      const sortFunctions = {
+        'number': (a, b) => a[order] - b[order],
+        'string': (a, b) => a[order].localeCompare(b[order]),
+      };
+
+      const type = typeof phones[0][order];
+      const sortFn = sortFunctions[type] || defaultSortFn;
+
+      phones = phones.sort(sortFn);
     }
 
     return phones;

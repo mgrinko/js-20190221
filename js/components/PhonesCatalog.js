@@ -24,6 +24,7 @@ export default class PhonesCatalog extends Component {
           ${this.props.phones.map(phone => `
             
             <li class="thumbnail">
+              ${ phone.age }
               <a
                 data-element="PhoneLink"
                 data-phone-id="${phone.id}"

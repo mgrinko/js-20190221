@@ -11,7 +11,7 @@ export default class PhonesPage extends Component {
 
     this.state = {
       phones: [],
-      query: 'sams',
+      query: '',
       order: 'name',
       selectedPhone: null,
       items: {
