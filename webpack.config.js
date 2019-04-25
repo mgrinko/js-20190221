@@ -33,7 +33,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     host: '127.0.0.1',
-    port: 9000
+    port: 9080
   },
 
   // optimization: {

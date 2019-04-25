@@ -1,7 +1,7 @@
 {
-  "name": "js-20190221",
-  "version": "1.0.0",
-  "description": "",
+  "name": "test",
+  "version": "0.0.1",
+  "description": "test ",
   "main": "server.js",
   "dependencies": {
     "@babel/core": "^7.4.3",
@@ -22,7 +22,8 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.2",
     "node-static": "^0.7.11",
-    "webpack-dev-server": "^3.3.1"
+    "webpack-dev-server": "^3.3.1",
+    "ws": "3.3.2"
   },
   "scripts": {
     "build": "webpack",
@@ -33,7 +34,7 @@
     "type": "git",
     "url": "git+https://github.com/mgrinko/js-20190221.git"
   },
-  "author": "",
+  "author": "me",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/mgrinko/js-20190221/issues"

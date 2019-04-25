@@ -1,26 +1,48 @@
-export default class Filter {
-  constructor(element) {
-    this.element = element;
+import Component from "../Component";
 
-    this.render();
-  }
+export default class Filter extends Component {
+    constructor(element, props) {
+        super(element, props);
 
-  render() {
-    this.element.innerHTML = `
+        this.render();
+
+        this.on('input', 'Filter',this.debounce((event) => {
+            this.props.onFind(event.target.value);
+        }).bind(this));
+
+        this.on('click', 'Sort',(event) => {
+            this.props.onSort(event.target.value);
+        });
+    }
+
+    debounce(func, time =  1000) {
+        let timerId;
+        return function(...args){
+            clearTimeout(timerId);
+            timerId = setTimeout(()=>{
+                func.call(this,...args)
+            },time);
+        }
+    }
+
+
+
+    render() {
+        this.element.innerHTML = `
       <div class="Filter">
         <p>
           Search:
-          <input>
+          <input data-element="Filter">
         </p>
   
         <p>
           Sort by:
-          <select>
-            <option value="name">Alphabetical</option>
-            <option value="age">Newest</option>
+          <select  data-element="Sort">
+            <option value="Alphabetical">Alphabetical</option>
+            <option value="Newest">Newest</option>
           </select>
         </p>
       </div>
     `;
-  }
+    }
 }
