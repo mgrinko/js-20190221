@@ -3,7 +3,7 @@ export default class Component {
     this.element = element;
     this.props = props;
 
-    this.components = {};
+    this.component = {};
   }
 
   setState(newState) {
@@ -11,39 +11,36 @@ export default class Component {
       ...this.state,
       ...newState,
     }
-
     this.render();
   }
 
   on(eventName, elementName, callback) {
     this.element.addEventListener(eventName, (event) => {
       const delegateTarget = event.target.closest(`[data-element="${elementName}"]`);
-   
+
       if (!delegateTarget) {
         return;
       }
 
       event.delegateTarget = delegateTarget;
-      
-      callback(event)
-    });
+      callback(event);
+    })
   }
 
-  initializeComponent(Constructor, props) {
-    const constructorName = Constructor.name;
-    const element = this.element.querySelector(`[data-component="${constructorName}"]`);
+  initComponent(Constructor, props) {
+    const componentName = Constructor.name;
+    const element = this.element.querySelector(`[data-component="${componentName}"]`);
 
     if (!element) {
       return;
     }
 
-    const currentComponent = this.components[constructorName];
-    
-    if (!currentComponent || !_.isEqual(currentComponent.props, props)) {
-      
-      this.components[constructorName] = new Constructor(element, props);
+    const current = this.component[componentName]
+
+    if (!current || !_.isEqual(current.props, props)) {
+      this.component[componentName] = new Constructor(element, props);
     } else {
-      element.parentNode.replaceChild(currentComponent.element, element)
+      element.parentNode.replaceChild(current.element, element)
     }
   }
 }

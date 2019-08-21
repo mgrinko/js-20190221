@@ -2,7 +2,7 @@ export default class Filter {
   constructor(element) {
     this.element = element;
 
-    this.render();
+    this.render()
   }
 
   render() {
@@ -18,7 +18,7 @@ export default class Filter {
           <option value="name">Alphabetical</option>
           <option value="age">Newest</option>
         </select>
-      </p>
+      </p>    
     `;
   }
 }

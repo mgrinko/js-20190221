@@ -1,14 +1,18 @@
-const API_URL = 'https://mgrinko.github.io/js-20190221/api/phones';
+const URL_API = 'https://mgrinko.github.io/js-20190221/api/phones';
 
-export const getAllPhones = async () => {
-  const response = await fetch(API_URL + '.json');
-  const data = await response.json();
+export const getAll = async () => {
+  try {
+    const response = await fetch (URL_API + '.jdson')
+    const data = await response.json();
 
-  return data;
+    return data;
+  } catch (e) {
+    return [];
+  }
+
 }
 
-export const getPhoneById = async (phoneId) => {
-  const response = await fetch(API_URL + '/' + phoneId + '.json');
-  const phone = await response.json();
-  return phone;
+export const getById = (phoneId) => {
+  return fetch(URL_API + '/' + phoneId + '.json')
+    .then(response => response.json());
 }

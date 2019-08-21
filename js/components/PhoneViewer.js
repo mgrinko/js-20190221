@@ -3,26 +3,25 @@ import Component from '../Component.js';
 export default class PhoneViewer extends Component {
   constructor(element, props) {
     super(element, props);
-    
+
     this.state = {
-      selectedImage: this.props.phone.images[0],
+      selectedImgage: this.props.phone.images[0],
     }
 
     this.render();
 
-    this.on('click', 'Button', () => {
+    this.on('click', 'backButton', () => {
       this.props.onBack();
     });
 
-    this.on('click', 'AddItem', () => {
+    this.on('click', 'AddButton', () => {
       this.props.onAdd(this.props.phone.id);
-    })
+    });
 
     this.on('click', 'SmallImage', (event) => {
       const imageUrl = event.delegateTarget.dataset.imageUrl;
-
       this.setState({
-        selectedImage: imageUrl,
+        selectedImgage: imageUrl,
       })
     });
   }
@@ -32,10 +31,10 @@ export default class PhoneViewer extends Component {
     this.element.innerHTML = `
       <div>
 
-        <img class="phone" src="${this.state.selectedImage}">
+        <img class="phone" src="${this.state.selectedImgage}">
 
-        <button data-element="Button">Back</button>
-        <button data-element="AddItem">Add to basket</button>
+        <button data-element="backButton">Back</button>
+        <button data-element="AddButton">Add to basket</button>
 
 
         <h1>${phone.name}</h1>

@@ -8,3 +8,7 @@ new PhonesPage(document.querySelector('[data-component="PhonesPage"]'));
 
 
 
+
+
+
+
