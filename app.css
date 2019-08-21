@@ -105,3 +105,25 @@ ul.specs dt {
 h1 {
   border-bottom: 1px solid gray;
 }
+
+.items-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  
+}
+
+.item {
+  width: 250px;
+  font-size: 12px;
+}
+
+.phone-list {
+  width: 250px;
+}
+
+.phone-item {
+  font-size: 16px;
+}
