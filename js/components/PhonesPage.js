@@ -3,7 +3,7 @@ import PhonesCatalog from './PhonesCatalog.js';
 import PhoneViewer from './PhoneViewer.js';
 import ShoppingCart from './ShoppingCart.js';
 import Filter from './Filter.js';
-import {getAll, getById} from "../api/Phones.js";
+import {getAll, getById} from "../api/PhonesDataServer.js";
 
 
 export default class PhonesPage extends Component{
@@ -28,7 +28,6 @@ export default class PhonesPage extends Component{
 
   async loadPones() {
     const phones = await getAll();
-    console.log(phones)
     this.setState({phones})
   }
   addItem(item) {
